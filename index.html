@@ -12,6 +12,7 @@
         <div id="minutes">00</div>
         <div id="seconds">00</div>
     </div>
+    <div id="nie"></div>
 
 <script>
     function updateClock(){
@@ -20,21 +21,29 @@
         var minutes = now.getMinutes();
         var seconds = now.getSeconds();
 
+        document.getElementById("nie").innerText = hours + minutes + seconds;
+
         if(hours < 10){
             hours = "0" + hours;
         }else{
             hours = hours;
         }
-        minutes = (minutes<10) ? "0" + minutes : minutes;
+        minutes = (minutes<10) ? "1" + minutes : minutes;
         seconds = (seconds<10) ? "0" + seconds : seconds;
 
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("hours").textContent = hours +":";
+        document.getElementById("minutes").textContent = minutes + ":";
         document.getElementById("seconds").textContent = seconds;
 
+        if(hours ==  8, minutes == 24){
+            document.getElementById("clock").style.color = "lightblue";
+        }
+        else{
+            document.getElementById("clock").style.color = "black";
+        }
         
     }
-    setInterval(updateClock,1000    )
+    setInterval(updateClock,1000);
     updateClock();
 </script>
 </body>
